@@ -1,0 +1,922 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sruthi Rachamalla Portfolio</title>
+  <!--<script src="/_sdk/element_sdk.js"></script>-->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-10px); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .slide-in {
+      animation: slideIn 0.4s ease-out forwards;
+    }
+    
+    .suggestion-chip {
+      transition: all 0.3s ease;
+    }
+    
+    .suggestion-chip:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .content-card {
+      transition: all 0.3s ease;
+    }
+    
+    .content-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <!--<script src="/_sdk/data_sdk.js" type="text/javascript"></script>-->
+ </head>
+ <body class="h-full">
+  <div id="app" class="w-full h-full overflow-auto"></div>
+  <script>
+    const defaultConfig = {
+      background_color: "#f7f7f8",
+      card_color: "#ffffff",
+      text_color: "#2d3748",
+      primary_action_color: "#10a37f",
+      secondary_action_color: "#ececf1",
+      font_family: "system-ui",
+      font_size: 16,
+      your_name: "Sruthi Rachamalla",
+      your_title: "Software Developer with a PhD in Computer Science",
+      welcome_message: "Welcome! Explore my academic journey and professional experience.",
+      about_text: "I'm a passionate researcher with a PhD in Computer Science. With 2 years of industry experience, I bridge the gap between cutting-edge research and practical applications.",
+      email: "sruthi.rachamalla@gmail.com",
+      linkedin: "https://linkedin.com/in/sruthi-rachamalla",
+      github: "https://github.com/sruthi-rachamalla"
+    };
+
+    const sections = {
+      about: {
+        title: "Me",
+        icon: "👋",
+        content: "Dynamic content based on config"
+      },
+      
+      education: {
+        title: "Education",
+        icon: "🎓",
+        content: [
+          { degree: "PhD in Computer Science", institution: "Southern Illinois University, Carbondale", year: "2023", focus: "Specialization: A Framework for Crypto-Based Monetization of Driver Behavior With Blockchain" },
+          { degree: "MS in Computer Science", institution: "Southern Illinois University, Carbondale", year: "2017", focus: "Focus: Cooperative Driving with Platooning" }
+          
+        ]
+      },
+      experience: {
+        title: "Experience",
+        icon: "💼",
+        content: [
+          { role: "Software Engineer", company: "Infoville Inc.", period: " Apr 2024 - Present", description: "Leading research initiatives in natural language processing and developing production-ready ML models." },
+          { role: "Graduate Research Assistant", company: "Southern Illinois University, Carbondale", period: "May 2021 – Dec 2023", description: "Conducted groundbreaking research in deep learning architectures, published in top-tier conferences." },
+          { role: "Software Engineer Intern", company: "Multi Centric Solutions, India", period: "Apr 2014 - July 2015", description: "Conducted groundbreaking research in deep learning architectures, published in top-tier conferences." }
+        ]
+      },
+
+      projects: {
+        title: "Featured Projects",
+        icon: "🚀",
+        content: [
+          { name: "Neural Architecture Search", description: "Developed an automated system for discovering optimal neural network architectures, reducing training time by 40%.", tech: "Python, TensorFlow, Kubernetes" },
+          { name: "Real-time Translation System", description: "Built a low-latency translation system supporting 15 languages with 95% accuracy.", tech: "PyTorch, FastAPI, Docker" },
+          { name: "Healthcare Diagnostic AI", description: "Created an AI system for early disease detection, deployed in 5 clinical settings.", tech: "Deep Learning, Computer Vision" }
+        ]
+      },
+      skills: {
+        title: "Technical Skills",
+        icon: "⚡",
+        content: {
+          "Programming": ["Python", "Java", "JavaScript", "Bash"],
+          "Web Technologies": ["HTML", "CSS", "Bootstrap", "JavaScript", "React", "Django", "jQuery", "AJAX"],
+          "AI/ML": ["NumPy","TensorFlow", "PyTorch", "Scikit-learn", "Pandas", "Matplotlib"],
+          "Databases": ["SQL", "MySQL"],
+          "Cloud": ["AWS (Lambda, S3, EC2, SageMaker, DynamoDB)"],
+          "Tools & Platforms": ["Git", "Docker", "JIRA", "VS Code"],
+          "Research": ["Statistical Analysis", "Experiment Design", "Technical Writing", "Peer Review"]
+        }
+      },
+
+      
+      publications: {
+        title: "Publications",
+        icon: "📚",
+        content: [
+          { title: "DSRBT-Driving Safety Reward based on Blockchain Technology", titleLink: "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C44&q=DSRBT-Driving+Safety+Reward+based+on+Blockchain+Technology&btnG=", venue: "International Conference on Computers and Their Applications" , authors: "Sruthi Rachamalla, Henry Hexmoor" },
+          { title: "Driver Safety Reward with Cooperative Platooning using Blockchain", titleLink: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Ql0bN0IAAAAJ&citation_for_view=Ql0bN0IAAAAJ:u5HHmVD_uO8C", venue:"The World Congress in Computer Science, Computer Engineering, and Applied Computing", authors: "Sruthi Rachamalla, Henry Hexmoor" },
+          { title: "Improving Road Safety by Blockchain-based Monetization of Driver Behavior.", titleLink: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Ql0bN0IAAAAJ&citation_for_view=Ql0bN0IAAAAJ:u-x6o8ySG0sC",venue: "International Journal for Computers & Their Applications", authors: "Sruthi Rachamalla, Henry Hexmoor" },
+          { title: "Blockchain and IoT-enabled earning mechanism for driver safety rewards in cooperative platooning environment", titleLink: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Ql0bN0IAAAAJ&citation_for_view=Ql0bN0IAAAAJ:2osOgNQ5qMEC",venue: "International Journal of Emerging Trends in Engineering Research", authors: "E Maghsoudlou, S Rachamalla, H Hexmoor" },
+          { title: "A Framework for Crypto-Based Monetization of Driver Behavior With Blockchain", titleLink: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Ql0bN0IAAAAJ&citation_for_view=Ql0bN0IAAAAJ:9yKSN-GCB0IC",venue: "Southern Illinois University, Carbondale", authors: "sruthi Rachamalla" }
+        ]
+      },
+      awards: {
+        title: "Awards & Recognition",
+        icon: "🏆",
+        content: [
+          
+          { award: "Outstanding Graduate Assistant", organization: "Southern Illinois University, Carbondale 2019-2020" },
+          { award: "Best Paper Award", organization: "CATA 2022" }
+        ]
+      },
+      contact: {
+        title: "Get In Touch",
+        icon: "📧",
+        content: "Dynamic content based on config"
+      }
+    };
+
+    let currentSection = 'about';
+
+    async function onConfigChange(config) {
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseFontStack = 'system-ui, -apple-system, sans-serif';
+      const fontStack = `${customFont}, ${baseFontStack}`;
+      
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const cardColor = config.card_color || defaultConfig.card_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+
+      document.body.style.backgroundColor = backgroundColor;
+      document.body.style.color = textColor;
+      document.body.style.fontFamily = fontStack;
+
+      const app = document.getElementById('app');
+      app.innerHTML = `
+        <div class="w-full" style="min-height: 100%; background: ${backgroundColor}; font-family: ${fontStack};">
+          <div class="max-w-4xl mx-auto px-6 py-12">
+            <!-- Header -->
+            <div class="text-center mb-12 fade-in">
+              <h1 id="userName" style="font-size: ${baseSize * 2.5}px; font-weight: 700; color: ${textColor}; margin-bottom: 12px;">${config.your_name || defaultConfig.your_name}</h1>
+              <p id="userTitle" style="font-size: ${baseSize * 1.25}px; color: ${textColor}; opacity: 0.8; margin-bottom: 16px;">${config.your_title || defaultConfig.your_title}</p>
+              <p id="welcomeMessage" style="font-size: ${baseSize}px; color: ${textColor}; opacity: 0.7;">${config.welcome_message || defaultConfig.welcome_message}</p>
+            </div>
+
+            <!-- Section Thumbnails Grid -->
+            <div class="mb-8 slide-in">
+              <p style="font-size: ${baseSize * 0.85}px; color: ${textColor}; opacity: 0.6; margin-bottom: 10px;">Explore sections:</p>
+              <div id="thumbnailGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px; margin-bottom: 24px;"></div>
+            </div>
+
+            <!-- Chat Messages Area -->
+            <div id="chatMessages" style="background: ${cardColor}; border-radius: 16px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 20px; max-height: 600px; overflow-y: auto; display: none;">
+              <!-- Sticky Header -->
+              <div id="chatHeader" style="position: sticky; top: -24px; background: ${cardColor}; padding: 16px 0 20px 0; margin: -24px -24px 16px -24px; padding-left: 24px; padding-right: 24px; border-bottom: 2px solid ${textColor}10; z-index: 10;">
+                <div style="font-size: ${baseSize * 1.3}px; font-weight: 700; color: ${textColor}; margin-bottom: 6px;">${config.your_name || defaultConfig.your_name}</div>
+                <div style="font-size: ${baseSize * 0.9}px; color: ${textColor}; opacity: 0.7;">${config.your_title || defaultConfig.your_title}</div>
+              </div>
+              <!-- Messages will be added here -->
+            </div>
+
+            <!-- Chat Input (Fixed at bottom of chat area) -->
+            <div class="mb-8 slide-in" style="background: ${cardColor}; border-radius: 16px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <input 
+                  type="text" 
+                  id="searchInput" 
+                  placeholder="Ask me anything... (e.g., 'What is your research focus?', 'Tell me about your experience')"
+                  style="flex: 1; padding: 14px 18px; border: 2px solid ${textColor}20; border-radius: 12px; font-size: ${baseSize}px; font-family: ${fontStack}; color: ${textColor}; background: ${backgroundColor}; outline: none;"
+                />
+                <button 
+                  id="searchBtn"
+                  style="padding: 14px 28px; background: ${primaryColor}; color: white; border: none; border-radius: 12px; font-size: ${baseSize}px; font-weight: 600; cursor: pointer; font-family: ${fontStack}; transition: opacity 0.2s;"
+                >Ask</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const thumbnailGrid = document.getElementById('thumbnailGrid');
+      Object.keys(sections).forEach(key => {
+        const thumbnail = document.createElement('a');
+        thumbnail.href = `#${key}`;
+        thumbnail.className = 'content-card';
+        thumbnail.style.cssText = `
+          background: ${cardColor};
+          border: 2px solid ${textColor}10;
+          border-radius: 8px;
+          padding: 10px 8px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          text-align: center;
+          font-family: ${fontStack};
+          text-decoration: none;
+          display: block;
+        `;
+        
+        thumbnail.innerHTML = `
+          <div style="font-size: ${baseSize * 1.5}px; margin-bottom: 4px;">${sections[key].icon}</div>
+          <div style="font-size: ${baseSize * 0.75}px; font-weight: 600; color: ${textColor}; line-height: 1.2;">${sections[key].title}</div>
+        `;
+        
+        thumbnail.onclick = async (e) => {
+          e.preventDefault();
+          
+          // Just update the hash - let hashchange handler do the work
+          window.location.hash = key;
+        };
+        
+        thumbnailGrid.appendChild(thumbnail);
+      });
+      
+      // Setup search functionality
+      const searchInput = document.getElementById('searchInput');
+      const searchBtn = document.getElementById('searchBtn');
+      const chatMessages = document.getElementById('chatMessages');
+
+      async function handleSearch() {
+        const query = searchInput.value.trim();
+        if (!query) return;
+
+        // Show chat area
+        chatMessages.style.display = 'block';
+        
+        // Disable input while processing
+        searchInput.disabled = true;
+        searchBtn.disabled = true;
+        searchBtn.style.opacity = '0.6';
+
+        // Add user message
+        addMessage('user', query);
+        
+        // Clear input
+        searchInput.value = '';
+
+        // Add thinking indicator
+        const thinkingId = addThinkingMessage();
+        
+        // Simulate thinking delay
+        await new Promise(resolve => setTimeout(resolve, 800));
+        
+        // Remove thinking indicator
+        removeMessage(thinkingId);
+        
+        // Generate and type answer
+        const answer = generateAnswer(query.toLowerCase(), config);
+        await addTypingMessage('assistant', answer);
+        
+        // Re-enable input
+        searchInput.disabled = false;
+        searchBtn.disabled = false;
+        searchBtn.style.opacity = '1';
+        searchInput.focus();
+      }
+
+      function addMessage(role, content) {
+        const messageDiv = document.createElement('div');
+        messageDiv.style.cssText = `
+          margin-bottom: 20px;
+          display: flex;
+          gap: 12px;
+          animation: fadeIn 0.3s ease-out;
+        `;
+        
+        const avatar = document.createElement('div');
+        avatar.style.cssText = `
+          width: 32px;
+          height: 32px;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: ${baseSize * 1.2}px;
+          flex-shrink: 0;
+          background: ${role === 'user' ? primaryColor : config.background_color || defaultConfig.background_color};
+        `;
+        avatar.textContent = role === 'user' ? '👤' : '🤖';
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.style.cssText = `
+          flex: 1;
+          padding-top: 4px;
+        `;
+        
+        const nameLabel = document.createElement('div');
+        nameLabel.style.cssText = `
+          font-size: ${baseSize * 0.85}px;
+          font-weight: 600;
+          color: ${textColor};
+          opacity: 0.7;
+          margin-bottom: 4px;
+        `;
+        nameLabel.textContent = role === 'user' ? 'You' : config.your_name || defaultConfig.your_name;
+        
+        const text = document.createElement('p');
+        text.style.cssText = `
+          font-size: ${baseSize}px;
+          line-height: 1.6;
+          color: ${textColor};
+          margin: 0;
+        `;
+        text.textContent = content;
+        
+        contentDiv.appendChild(nameLabel);
+        contentDiv.appendChild(text);
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(contentDiv);
+        chatMessages.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        return messageDiv;
+      }
+
+      function addThinkingMessage() {
+        const messageDiv = document.createElement('div');
+        messageDiv.id = 'thinking-message';
+        messageDiv.style.cssText = `
+          margin-bottom: 20px;
+          display: flex;
+          gap: 12px;
+          animation: fadeIn 0.3s ease-out;
+        `;
+        
+        const avatar = document.createElement('div');
+        avatar.style.cssText = `
+          width: 32px;
+          height: 32px;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: ${baseSize * 1.2}px;
+          flex-shrink: 0;
+          background: ${config.background_color || defaultConfig.background_color};
+        `;
+        avatar.textContent = '🤖';
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.style.cssText = `
+          flex: 1;
+          padding-top: 4px;
+        `;
+        
+        const thinking = document.createElement('div');
+        thinking.style.cssText = `
+          display: flex;
+          gap: 4px;
+          align-items: center;
+        `;
+        
+        for (let i = 0; i < 3; i++) {
+          const dot = document.createElement('div');
+          dot.style.cssText = `
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: ${textColor};
+            opacity: 0.6;
+            animation: bounce 1.4s infinite ease-in-out;
+            animation-delay: ${i * 0.2}s;
+          `;
+          thinking.appendChild(dot);
+        }
+        
+        contentDiv.appendChild(thinking);
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(contentDiv);
+        chatMessages.appendChild(messageDiv);
+        
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        return 'thinking-message';
+      }
+
+      function removeMessage(id) {
+        const msg = document.getElementById(id);
+        if (msg) msg.remove();
+      }
+
+      async function addTypingMessage(role, content) {
+        const messageDiv = document.createElement('div');
+        messageDiv.style.cssText = `
+          margin-bottom: 20px;
+          display: flex;
+          gap: 12px;
+          animation: fadeIn 0.3s ease-out;
+        `;
+        
+        const avatar = document.createElement('div');
+        avatar.style.cssText = `
+          width: 32px;
+          height: 32px;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: ${baseSize * 1.2}px;
+          flex-shrink: 0;
+          background: ${config.background_color || defaultConfig.background_color};
+        `;
+        avatar.textContent = '🤖';
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.style.cssText = `
+          flex: 1;
+          padding-top: 4px;
+        `;
+        
+        const nameLabel = document.createElement('div');
+        nameLabel.style.cssText = `
+          font-size: ${baseSize * 0.85}px;
+          font-weight: 600;
+          color: ${textColor};
+          opacity: 0.7;
+          margin-bottom: 4px;
+        `;
+        nameLabel.textContent = config.your_name || defaultConfig.your_name;
+        
+        const text = document.createElement('p');
+        text.style.cssText = `
+          font-size: ${baseSize}px;
+          line-height: 1.6;
+          color: ${textColor};
+          margin: 0;
+        `;
+        
+        contentDiv.appendChild(nameLabel);
+        contentDiv.appendChild(text);
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(contentDiv);
+        chatMessages.appendChild(messageDiv);
+        
+        // Typing animation
+        let index = 0;
+        const typingSpeed = 20; // ms per character
+        
+        while (index < content.length) {
+          text.textContent = content.substring(0, index + 1);
+          index++;
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          await new Promise(resolve => setTimeout(resolve, typingSpeed));
+        }
+      }
+
+      async function addFormattedMessage(role, sectionKey, config) {
+        const messageDiv = document.createElement('div');
+        messageDiv.style.cssText = `
+          margin-bottom: 20px;
+          display: flex;
+          gap: 12px;
+          animation: fadeIn 0.3s ease-out;
+        `;
+        
+        const avatar = document.createElement('div');
+        avatar.style.cssText = `
+          width: 32px;
+          height: 32px;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: ${baseSize * 1.2}px;
+          flex-shrink: 0;
+          background: ${config.background_color || defaultConfig.background_color};
+        `;
+        avatar.textContent = '🤖';
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.style.cssText = `
+          flex: 1;
+          padding-top: 4px;
+        `;
+        
+        const nameLabel = document.createElement('div');
+        nameLabel.style.cssText = `
+          font-size: ${baseSize * 0.85}px;
+          font-weight: 600;
+          color: ${textColor};
+          opacity: 0.7;
+          margin-bottom: 4px;
+        `;
+        nameLabel.textContent = config.your_name || defaultConfig.your_name;
+        
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(contentDiv);
+        chatMessages.appendChild(messageDiv);
+        
+        contentDiv.appendChild(nameLabel);
+        
+        // Build formatted content based on section
+        const formattedContent = buildFormattedContent(sectionKey, config);
+        
+        // Animate appearance
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        const contentContainer = document.createElement('div');
+        contentContainer.innerHTML = formattedContent;
+        contentDiv.appendChild(contentContainer);
+        
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function buildFormattedContent(sectionKey, config) {
+        const section = sections[sectionKey];
+        const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+        const cardColor = config.card_color || defaultConfig.card_color;
+        
+        if (sectionKey === 'about') {
+          return `
+            <div style="font-size: ${baseSize}px; line-height: 1.8; color: ${textColor};">
+              <p style="margin: 0 0 12px 0;">${config.about_text || defaultConfig.about_text}</p>
+            </div>
+          `;
+        } else if (sectionKey === 'experience') {
+          let html = `<div style="font-size: ${baseSize}px; line-height: 1.6; color: ${textColor};">`;
+          section.content.forEach((item, index) => {
+            html += `
+              <div style="background: ${backgroundColor}; border-left: 3px solid ${primaryColor}; padding: 16px; margin-bottom: 16px; border-radius: 8px;">
+                <div style="font-weight: 700; font-size: ${baseSize * 1.1}px; margin-bottom: 4px; color: ${primaryColor};">${item.role}</div>
+                <div style="font-weight: 600; margin-bottom: 4px;">${item.company}</div>
+                <div style="opacity: 0.7; font-size: ${baseSize * 0.9}px; margin-bottom: 8px;">${item.period}</div>
+                <div style="line-height: 1.6;">${item.description}</div>
+              </div>
+            `;
+          });
+          html += `</div>`;
+          return html;
+        } else if (sectionKey === 'education') {
+          let html = `<div style="font-size: ${baseSize}px; line-height: 1.6; color: ${textColor};">`;
+          section.content.forEach((item, index) => {
+            html += `
+              <div style="background: ${backgroundColor}; border-left: 3px solid ${primaryColor}; padding: 16px; margin-bottom: 16px; border-radius: 8px;">
+                <div style="font-weight: 700; font-size: ${baseSize * 1.1}px; margin-bottom: 4px; color: ${primaryColor};">${item.degree}</div>
+                <div style="font-weight: 600; margin-bottom: 4px;">${item.institution}</div>
+                <div style="opacity: 0.7; font-size: ${baseSize * 0.9}px; margin-bottom: 8px;">${item.year}</div>
+                <div style="line-height: 1.6;">${item.focus}</div>
+              </div>
+            `;
+          });
+          html += `</div>`;
+          return html;
+        } else if (sectionKey === 'projects') {
+          let html = `<div style="font-size: ${baseSize}px; line-height: 1.6; color: ${textColor};">`;
+          section.content.forEach((item, index) => {
+            html += `
+              <div style="background: ${backgroundColor}; padding: 20px; margin-bottom: 16px; border-radius: 12px; border: 2px solid ${textColor}10;">
+                <div style="font-weight: 700; font-size: ${baseSize * 1.15}px; margin-bottom: 8px; color: ${primaryColor};">🚀 ${item.name}</div>
+                <div style="line-height: 1.7; margin-bottom: 12px;">${item.description}</div>
+                <div style="display: inline-block; background: ${primaryColor}20; color: ${primaryColor}; padding: 6px 12px; border-radius: 6px; font-size: ${baseSize * 0.85}px; font-weight: 600;">${item.tech}</div>
+              </div>
+            `;
+          });
+          html += `</div>`;
+          return html;
+        } else if (sectionKey === 'skills') {
+          let html = `<div style="font-size: ${baseSize}px; line-height: 1.6; color: ${textColor};">`;
+          Object.entries(section.content).forEach(([category, skills]) => {
+            html += `
+              <div style="margin-bottom: 20px;">
+                <div style="font-weight: 700; font-size: ${baseSize * 1.1}px; margin-bottom: 12px; color: ${primaryColor};">${category}</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            `;
+            skills.forEach(skill => {
+              html += `<span style="background: ${backgroundColor}; padding: 8px 14px; border-radius: 20px; font-size: ${baseSize * 0.9}px; border: 1px solid ${textColor}20;">${skill}</span>`;
+            });
+            html += `</div></div>`;
+          });
+          html += `</div>`;
+          return html;
+        } else if (sectionKey === 'publications') {
+          let html = `<div style="font-size: ${baseSize}px; line-height: 1.6; color: ${textColor}; transition: color 0.3s ease;">`;
+          section.content.forEach((item, index) => {
+            const titleDisplay = item.titleLink 
+              ? `<a href="${item.titleLink}" target="_blank" rel="noopener noreferrer" style="color: ${textColor}; text-decoration: none; border-bottom: 2px solid ${primaryColor}; transition: all 0.2s ease; font-weight: 700; font-size: ${baseSize * 1.05}px;">"${item.title}"</a>`
+              : `<div style="font-weight: 700; font-size: ${baseSize * 1.05}px; color: ${textColor}; transition: color 0.3s ease;">"${item.title}"</div>`;
+            html += `
+              <div style="background: ${backgroundColor}; padding: 18px; margin-bottom: 16px; border-radius: 10px; border-left: 4px solid ${primaryColor}; transition: all 0.3s ease;">
+                ${titleDisplay}
+                <div style="opacity: 0.8; margin-bottom: 4px; margin-top: 8px; font-size: ${baseSize * 0.95}px; transition: color 0.3s ease;">${item.venue}</div>
+                <div style="opacity: 0.6; font-size: ${baseSize * 0.85}px; transition: color 0.3s ease;">Authors: ${item.authors}</div>
+              </div>
+            `;
+          });
+          html += `</div>`;
+          return html;
+        } else if (sectionKey === 'awards') {
+          let html = `<div style="font-size: ${baseSize}px; line-height: 1.6; color: ${textColor};">`;
+          section.content.forEach((item, index) => {
+            html += `
+              <div style="background: ${backgroundColor}; padding: 20px; margin-bottom: 16px; border-radius: 12px; border: 2px solid ${primaryColor}30;">
+                <div style="font-size: ${baseSize * 1.8}px; margin-bottom: 8px;">🏆</div>
+                <div style="font-weight: 700; font-size: ${baseSize * 1.1}px; margin-bottom: 4px; color: ${primaryColor};">${item.award}</div>
+                <div style="font-weight: 600; margin-bottom: 8px; opacity: 0.8;">${item.organization}</div>
+              </div>
+            `;
+          });
+          html += `</div>`;
+          return html;
+        } else if (sectionKey === 'contact') {
+          const email = config.email || defaultConfig.email;
+          const linkedin = config.linkedin || defaultConfig.linkedin;
+          const github = config.github || defaultConfig.github;
+          return `
+            <div style="font-size: ${baseSize}px; line-height: 1.8; color: ${textColor};">
+              <p style="margin: 0 0 20px 0;">I'm always interested in discussing research opportunities, collaborations, or innovative projects. Feel free to reach out!</p>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; align-items: center; gap: 12px; background: ${backgroundColor}; padding: 12px 16px; border-radius: 8px;">
+                  <span style="font-size: ${baseSize * 1.3}px;">📧</span>
+                  <a href="mailto:${email}" target="_blank" rel="noopener noreferrer" style="color: ${primaryColor}; text-decoration: none; font-weight: 600;">${email}</a>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; background: ${backgroundColor}; padding: 12px 16px; border-radius: 8px;">
+                  <span style="font-size: ${baseSize * 1.3}px;">💼</span>
+                  <a href="${linkedin}" target="_blank" rel="noopener noreferrer" style="color: ${primaryColor}; text-decoration: none; font-weight: 600;">LinkedIn Profile</a>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; background: ${backgroundColor}; padding: 12px 16px; border-radius: 8px;">
+                  <span style="font-size: ${baseSize * 1.3}px;">💻</span>
+                  <a href="${github}" target="_blank" rel="noopener noreferrer" style="color: ${primaryColor}; text-decoration: none; font-weight: 600;">GitHub Profile</a>
+                </div>
+              </div>
+              <p style="margin: 20px 0 0 0; opacity: 0.8;">Looking forward to connecting with you!</p>
+            </div>
+          `;
+        }
+        
+        return "Information about this section.";
+      }
+
+      searchBtn.onclick = handleSearch;
+      searchInput.onkeypress = (e) => {
+        if (e.key === 'Enter') handleSearch();
+      };
+
+      // Handle direct navigation via URL hash
+      async function handleHashNavigation() {
+        const hash = window.location.hash.substring(1);
+        if (hash && sections[hash]) {
+          currentSection = hash;
+          chatMessages.style.display = 'block';
+          addMessage('user', `Tell me about ${sections[hash].title}`);
+          const thinkingId = addThinkingMessage();
+          await new Promise(resolve => setTimeout(resolve, 800));
+          removeMessage(thinkingId);
+          await addFormattedMessage('assistant', hash, config);
+        }
+      }
+
+      // Check URL on load
+      if (window.location.hash) {
+        handleHashNavigation();
+      }
+
+      // Listen for hash changes
+      window.addEventListener('hashchange', handleHashNavigation);
+
+      function generateSectionContent(sectionKey, config) {
+        const section = sections[sectionKey];
+        
+        if (sectionKey === 'about') {
+          return config.about_text || defaultConfig.about_text;
+        } else if (sectionKey === 'experience') {
+          let text = "Here's my professional experience:\n\n";
+          section.content.forEach((item, index) => {
+            text += `${index + 1}. ${item.role} at ${item.company} (${item.period})\n${item.description}\n\n`;
+          });
+          return text;
+        } else if (sectionKey === 'education') {
+          let text = "My educational background:\n\n";
+          section.content.forEach((item, index) => {
+            text += `${index + 1}. ${item.degree} from ${item.institution} (${item.year})\n${item.focus}\n\n`;
+          });
+          return text;
+        } else if (sectionKey === 'projects') {
+          let text = "Here are some of my featured projects:\n\n";
+          section.content.forEach((item, index) => {
+            text += `${index + 1}. ${item.name}\n${item.description}\nTechnologies: ${item.tech}\n\n`;
+          });
+          return text;
+        } else if (sectionKey === 'skills') {
+          let text = "My technical skills:\n\n";
+          Object.entries(section.content).forEach(([category, skills]) => {
+            text += `${category}: ${skills.join(', ')}\n\n`;
+          });
+          return text;
+        } else if (sectionKey === 'publications') {
+          let text = "My publications:\n\n";
+          section.content.forEach((item, index) => {
+            text += `${index + 1}. "${item.title}"\nPublished at ${item.venue}\nAuthors: ${item.authors}\n\n`;
+          });
+          return text;
+        } else if (sectionKey === 'awards') {
+          let text = "My awards and recognition:\n\n";
+          section.content.forEach((item, index) => {
+            text += `${index + 1}. ${item.award} from ${item.organization}\n${item.description}\n\n`;
+          });
+          return text;
+        } else if (sectionKey === 'contact') {
+          const email = config.email || defaultConfig.email;
+          const linkedin = config.linkedin || defaultConfig.linkedin;
+          const github = config.github || defaultConfig.github;
+          return `I'm always interested in discussing research opportunities, collaborations, or innovative projects. Feel free to reach out!\n\nEmail: ${email}\nLinkedIn: ${linkedin}\nGitHub: ${github}\n\nLooking forward to connecting with you!`;
+        }
+        
+        return "Information about this section.";
+      }
+      function generateAnswer(query, config) {
+        // Knowledge base from config and sections
+        const knowledge = {
+          name: config.your_name || defaultConfig.your_name,
+          title: config.your_title || defaultConfig.your_title,
+          about: config.about_text || defaultConfig.about_text,
+          email: config.email || defaultConfig.email,
+          linkedin: config.linkedin || defaultConfig.linkedin,
+          github: config.github || defaultConfig.github,
+          experience: sections.experience.content,
+          education: sections.education.content,
+          projects: sections.projects.content,
+          skills: sections.skills.content,
+          publications: sections.publications.content,
+          awards: sections.awards.content
+        };
+
+        // Who/Name questions
+        if (query.match(/who are you|your name|who is this|introduce yourself/i)) {
+          return `I'm ${knowledge.name}, ${knowledge.title}. ${knowledge.about}`;
+        }
+
+        // About/Background
+        if (query.match(/about you|background|tell me about|bio|story/i)) {
+          return knowledge.about;
+        }
+
+        // Education
+        if (query.match(/education|degree|phd|study|studied|university|college|school/i)) {
+          const edu = knowledge.education.map(e => 
+            `${e.degree} from ${e.institution} (${e.year}) - ${e.focus}`
+          ).join('. ');
+          return `My educational background: ${edu}`;
+        }
+
+        // Experience/Work
+        if (query.match(/experience|work|job|career|current role|working/i)) {
+          const exp = knowledge.experience.map(e => 
+            `${e.role} at ${e.company} (${e.period}): ${e.description}`
+          ).join(' | ');
+          return `My professional experience: ${exp}`;
+        }
+
+        // Research
+        if (query.match(/research|focus|area|speciali[zs]ation|field/i)) {
+          return `My research focuses on ${knowledge.title.toLowerCase()}. ${knowledge.about} I've published papers on topics including efficient neural architecture search, transfer learning for low-resource languages, and adversarial robustness in deep neural networks.`;
+        }
+
+        // Projects
+        if (query.match(/project|built|created|developed|portfolio/i)) {
+          const proj = knowledge.projects.map(p => 
+            `${p.name}: ${p.description} (Technologies: ${p.tech})`
+          ).join(' | ');
+          return `Here are some of my featured projects: ${proj}`;
+        }
+
+        // Skills/Technical
+        if (query.match(/skill|technolog|programming|language|tool|know/i)) {
+          let skillText = 'My technical skills include: ';
+          Object.entries(knowledge.skills).forEach(([cat, skills]) => {
+            skillText += `${cat}: ${skills.join(', ')}. `;
+          });
+          return skillText;
+        }
+
+        // Publications
+        if (query.match(/publication|paper|publish|research paper|article/i)) {
+          const pubs = knowledge.publications.map(p => 
+            `"${p.title}" published at ${p.venue}`
+          ).join('. ');
+          return `My publications: ${pubs}`;
+        }
+
+        // Awards
+        if (query.match(/award|recognition|honor|achievement|won/i)) {
+          const awards = knowledge.awards.map(a => 
+            `${a.award} from ${a.organization}: ${a.description}`
+          ).join('. ');
+          return `My awards and recognition: ${awards}`;
+        }
+
+        // Contact
+        if (query.match(/contact|reach|email|connect|get in touch|hire/i)) {
+          return `You can reach me at ${knowledge.email}. Connect with me on LinkedIn: ${knowledge.linkedin}, or check out my GitHub: ${knowledge.github}. I'm always open to discussing research opportunities and collaborations!`;
+        }
+
+        // Years of experience
+        if (query.match(/how long|years|experience|when did you start/i)) {
+          return `I have 2 years of industry experience as an AI Research Scientist, in addition to my doctoral research experience. I completed my PhD in 2022 and have been working in the industry since then.`;
+        }
+
+        // Specific technologies
+        if (query.match(/python|tensorflow|pytorch|machine learning|ai|deep learning|nlp/i)) {
+          return `Yes! I have extensive experience with AI and machine learning technologies. I'm proficient in Python, TensorFlow, PyTorch, and various ML frameworks. My work spans natural language processing, computer vision, and deep learning architectures.`;
+        }
+
+        // Default response with helpful suggestions
+        return `I'd be happy to answer that! Try asking me about: my education and PhD, research experience, technical skills, publications, awards, projects I've worked on, or how to contact me. You can also explore the section chips below!`;
+      }
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.card_color || defaultConfig.card_color,
+              set: (value) => {
+                config.card_color = value;
+                window.elementSdk.setConfig({ card_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.primary_action_color || defaultConfig.primary_action_color,
+              set: (value) => {
+                config.primary_action_color = value;
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+              set: (value) => {
+                config.secondary_action_color = value;
+                window.elementSdk.setConfig({ secondary_action_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["your_name", config.your_name || defaultConfig.your_name],
+          ["your_title", config.your_title || defaultConfig.your_title],
+          ["welcome_message", config.welcome_message || defaultConfig.welcome_message],
+          ["about_text", config.about_text || defaultConfig.about_text],
+          ["email", config.email || defaultConfig.email],
+          ["linkedin", config.linkedin || defaultConfig.linkedin],
+          ["github", config.github || defaultConfig.github]
+        ])
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        onConfigChange(defaultConfig);
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b886e0272c9fa34',t:'MTc2NzUwNTUyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

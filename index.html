@@ -713,12 +713,12 @@
             text += `${index + 1}. ${item.degree} from ${item.institution} (${item.year})\n${item.focus}\n\n`;
           });
           return text;
-        } else if (sectionKey === 'projects') {
-          let text = "Here are some of my featured projects:\n\n";
-          section.content.forEach((item, index) => {
-            text += `${index + 1}. ${item.name}\n${item.description}\nTechnologies: ${item.tech}\n\n`;
-          });
-          return text;
+        //} else if (sectionKey === 'projects') {
+          //let text = "Here are some of my featured projects:\n\n";
+          //section.content.forEach((item, index) => {
+          //  text += `${index + 1}. ${item.name}\n${item.description}\nTechnologies: ${item.tech}\n\n`;
+          //});
+          //return text;
         } else if (sectionKey === 'skills') {
           let text = "My technical skills:\n\n";
           Object.entries(section.content).forEach(([category, skills]) => {
